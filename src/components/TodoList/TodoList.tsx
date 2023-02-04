@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BsSunFill, BsTrashFill } from "react-icons/bs";
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 
-import styles from "./Todos.module.css";
+import styles from "./TodoList.module.css";
 
 type Filter = "all" | "active" | "completed";
 
