@@ -1,0 +1,117 @@
+.container {
+  width: 380px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  background: #404258;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 8px 16px;
+}
+
+.themeIcon {
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  color: orange;
+  padding: 0;
+  margin: 0;
+}
+
+.selectedFilterItem {
+  box-sizing: border-box;
+  border-bottom: 2px solid #6b728e;
+}
+
+.filterItem {
+  padding: 4px 2px;
+  cursor: pointer;
+}
+
+/* List */
+.todoContainer {
+  background: #474e68;
+  flex: 1;
+
+  padding: 0px 16px;
+}
+
+.todoLists {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.todoListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoCheckbox {
+  color: orange;
+  cursor: pointer;
+}
+
+.todoText {
+  flex: 1;
+  text-align: left;
+  padding: 0px 8px;
+  margin: 0px;
+}
+
+.todoTextCompleted {
+  text-decoration: line-through;
+  color: #6b728e;
+}
+
+.deleteTodo {
+  background: #6b728e;
+  padding: 4px;
+  font-size: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Input */
+.inputContainer {
+  padding: 8px 16px;
+  box-sizing: border-box;
+  background: #404258;
+}
+.inputForm {
+  width: 100%;
+  display: flex;
+}
+.inputText {
+  border: 0;
+  flex: 1;
+  height: 30px;
+  border-radius: 4px 0px 0px 4px;
+  padding-left: 16px;
+}
+.inputButton {
+  background-color: orange;
+  color: #fff;
+  border: 0;
+  border-radius: 0px 4px 4px 0px;
+  width: 80px;
+}
