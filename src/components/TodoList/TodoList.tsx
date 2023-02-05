@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { BsSunFill, BsTrashFill } from "react-icons/bs";
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
-import { v4 as uuidv4 } from "uuid";
+
+import AddTodo from "../AddTodo/AddTodo";
 
 import styles from "./TodoList.module.css";
 
 type Filter = "all" | "active" | "completed";
 
-interface TodoItem {
+export interface TodoItem {
   id: string;
-  value: string;
+  text: string;
   status: "active" | "completed";
 }
 
 const Todos: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
-  const [input, setInput] = useState<string>("");
+
   const [filter, setFilter] = useState<Filter>("all");
   const [filteredTodos, setFilteredTodos] = useState<TodoItem[]>([]);
 
@@ -26,18 +27,8 @@ const Todos: React.FC = () => {
     else setFilteredTodos(todos.filter((t) => t.status === "completed"));
   }, [todos, filter]);
 
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    if (input.length <= 0) return;
-    setTodos([
-      ...todos,
-      {
-        id: uuidv4(),
-        value: input,
-        status: "active",
-      },
-    ]);
-    setInput("");
+  const addTodo = (newTodo: TodoItem) => {
+    setTodos([...todos, newTodo]);
   };
   const onCheckboxClick = (todo: TodoItem) => {
     const changedTodo: TodoItem[] = todos.map((t) => {
@@ -111,7 +102,7 @@ const Todos: React.FC = () => {
                   todo.status === "completed" && styles.todoTextCompleted
                 }`}
               >
-                {todo.value}
+                {todo.text}
               </p>
               <BsTrashFill
                 onClick={() => onDeleteClick(todo.id)}
@@ -122,17 +113,7 @@ const Todos: React.FC = () => {
         </ul>
       </div>
       {/* Input */}
-      <div className={styles.inputContainer}>
-        <form onSubmit={onSubmit} className={styles.inputForm}>
-          <input
-            placeholder="Add Todo"
-            onChange={(e) => setInput(e.target.value)}
-            value={input}
-            className={styles.inputText}
-          />
-          <input type="submit" value={"Add"} className={styles.inputButton} />
-        </form>
-      </div>
+      <AddTodo addTodo={addTodo} />
     </div>
   );
 };

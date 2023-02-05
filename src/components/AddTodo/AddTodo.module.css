@@ -1,0 +1,23 @@
+/* Input */
+
+.inputForm {
+  padding: 8px 16px;
+  box-sizing: border-box;
+  background: #404258;
+  width: 100%;
+  display: flex;
+}
+.inputText {
+  border: 0;
+  flex: 1;
+  height: 30px;
+  border-radius: 4px 0px 0px 4px;
+  padding-left: 16px;
+}
+.inputButton {
+  background-color: orange;
+  color: #fff;
+  border: 0;
+  border-radius: 0px 4px 4px 0px;
+  width: 80px;
+}
