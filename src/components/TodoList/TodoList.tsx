@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BsSunFill, BsTrashFill } from "react-icons/bs";
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
+import { v4 as uuidv4 } from "uuid";
 
 import styles from "./TodoList.module.css";
 
 type Filter = "all" | "active" | "completed";
 
 interface TodoItem {
-  id: number;
+  id: string;
   value: string;
   status: "active" | "completed";
 }
@@ -31,7 +32,7 @@ const Todos: React.FC = () => {
     setTodos([
       ...todos,
       {
-        id: Math.floor(Math.random() * 1000000),
+        id: uuidv4(),
         value: input,
         status: "active",
       },
@@ -50,7 +51,7 @@ const Todos: React.FC = () => {
     });
     setTodos(changedTodo);
   };
-  const onDeleteClick = (id: number) => {
+  const onDeleteClick = (id: string) => {
     const changedTodo: TodoItem[] = todos.filter((t) => t.id !== id);
     setTodos(changedTodo);
   };
