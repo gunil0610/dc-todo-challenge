@@ -1,0 +1,30 @@
+.todoListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoCheckbox {
+  color: orange;
+  cursor: pointer;
+}
+
+.todoText {
+  flex: 1;
+  text-align: left;
+  padding: 0px 8px;
+  margin: 0px;
+}
+
+.todoTextCompleted {
+  text-decoration: line-through;
+  color: #6b728e;
+}
+
+.deleteTodo {
+  background: #6b728e;
+  padding: 4px;
+  font-size: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}

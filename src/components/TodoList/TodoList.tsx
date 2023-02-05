@@ -3,6 +3,7 @@ import { BsSunFill, BsTrashFill } from "react-icons/bs";
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 
 import AddTodo from "../AddTodo/AddTodo";
+import Todo from "../Todo/Todo";
 
 import styles from "./TodoList.module.css";
 
@@ -27,25 +28,12 @@ const Todos: React.FC = () => {
     else setFilteredTodos(todos.filter((t) => t.status === "completed"));
   }, [todos, filter]);
 
-  const addTodo = (newTodo: TodoItem) => {
-    setTodos([...todos, newTodo]);
-  };
-  const onCheckboxClick = (todo: TodoItem) => {
-    const changedTodo: TodoItem[] = todos.map((t) => {
-      if (t.id === todo.id) {
-        return {
-          ...t,
-          status: todo.status === "active" ? "completed" : "active",
-        };
-      }
-      return t;
-    });
-    setTodos(changedTodo);
-  };
-  const onDeleteClick = (id: string) => {
-    const changedTodo: TodoItem[] = todos.filter((t) => t.id !== id);
-    setTodos(changedTodo);
-  };
+  const handleAdd = (newTodo: TodoItem) => setTodos([...todos, newTodo]);
+  const handleUpdate = (updatedTodo: TodoItem) =>
+    setTodos(todos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t)));
+  const handleDelete = (deletedTodo: TodoItem) =>
+    setTodos(todos.filter((t) => t.id !== deletedTodo.id));
+
   return (
     <div className={styles.container}>
       {/* Header */}
@@ -85,35 +73,17 @@ const Todos: React.FC = () => {
       <div className={styles.todoContainer}>
         <ul className={styles.todoLists}>
           {filteredTodos.map((todo) => (
-            <li key={todo.id} className={styles.todoListItem}>
-              {todo.status === "active" ? (
-                <ImCheckboxUnchecked
-                  onClick={() => onCheckboxClick(todo)}
-                  className={styles.todoCheckbox}
-                />
-              ) : (
-                <ImCheckboxChecked
-                  onClick={() => onCheckboxClick(todo)}
-                  className={styles.todoCheckbox}
-                />
-              )}
-              <p
-                className={`${styles.todoText} ${
-                  todo.status === "completed" && styles.todoTextCompleted
-                }`}
-              >
-                {todo.text}
-              </p>
-              <BsTrashFill
-                onClick={() => onDeleteClick(todo.id)}
-                className={styles.deleteTodo}
-              />
-            </li>
+            <Todo
+              key={todo.id}
+              todo={todo}
+              onUpdate={handleUpdate}
+              onDelete={handleDelete}
+            />
           ))}
         </ul>
       </div>
       {/* Input */}
-      <AddTodo addTodo={addTodo} />
+      <AddTodo onAdd={handleAdd} />
     </div>
   );
 };
