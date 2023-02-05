@@ -15,16 +15,14 @@ const Header: React.FC<Props> = ({ filter, onFilterChange }) => {
       {/* Icon */}
       <BsSunFill className={styles.themeIcon} />
       {/* Filter */}
-      <ul className={styles.filter}>
+      <ul className={styles.filters}>
         {filters.map((f, i) => (
           <li key={i}>
             <button
               onClick={() => onFilterChange(f)}
-              className={`${styles.filterItem} ${
-                filter === f && styles.selectedFilterItem
-              }`}
+              className={`${styles.filter} ${filter === f && styles.selected}`}
             >
-              {`${f[0].toUpperCase()}${f.slice(1)}`}
+              {f}
             </button>
           </li>
         ))}
