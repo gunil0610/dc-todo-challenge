@@ -8,14 +8,11 @@
   --color-scrollbar: #aaa7a7;
 }
 
-.dark {
-  --color-bg-dark: #f5f5f5;
-  --color-bg: #22443b;
-  --color-grey: #d1d1d1;
-  --color-text: #22243b;
-  --color-accent: #f16e03;
-  --color-white: #fff;
-  --color-scrollbar: #aaa7a7;
+html.dark {
+  --color-bg-dark: #1a1c35;
+  --color-bg: #22243b;
+  --color-grey: #4e4e4e;
+  --color-text: #fdfffd;
 }
 
 body {
