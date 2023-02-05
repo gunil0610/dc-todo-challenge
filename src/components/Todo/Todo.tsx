@@ -15,25 +15,27 @@ const Todo: React.FC<Props> = ({ todo, onUpdate, onDelete }) => {
     onUpdate({ ...todo, status: e.target.checked ? "completed" : "active" });
   };
   return (
-    <li key={todo.id} className={styles.todoListItem}>
+    <li className={styles.todoListItem}>
       <input
-        className={styles.todoCheckbox}
+        className={styles.checkbox}
         type="checkbox"
         id="checkbox"
         checked={todo.status === "completed"}
         onChange={handleChange}
       />
-      <p
-        className={`${styles.todoText} ${
-          todo.status === "completed" && styles.todoTextCompleted
+      <label
+        htmlFor="checkbox"
+        className={`${styles.text} ${
+          todo.status === "completed" && styles.completed
         }`}
       >
         {todo.text}
-      </p>
-      <BsTrashFill
-        onClick={() => onDelete(todo)}
-        className={styles.deleteTodo}
-      />
+      </label>
+      <span className={styles.icon}>
+        <button onClick={() => onDelete(todo)} className={styles.button}>
+          <BsTrashFill />
+        </button>
+      </span>
     </li>
   );
 };
