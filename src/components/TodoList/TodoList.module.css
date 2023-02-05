@@ -1,16 +1,17 @@
 /* List */
 .todoContainer {
-  background: #474e68;
-  flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  background: var(--color-bg);
 }
 
 .todoLists {
   margin: 0;
+  flex: 1 1 auto;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  flex: 1;
   gap: 12px;
   padding: 0px 16px;
   padding-top: 10px;

@@ -4,6 +4,7 @@
   --color-grey: #d1d1d1;
   --color-text: #22243b;
   --color-accent: #f16e03;
+  --color-white: #fff;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
   flex-direction: column;
   -webkit-box-shadow: 5px 5px 21px 4px rgba(0, 0, 0, 0, 0.45);
   box-shadow: 5px 5px 21px 4px rgba(0, 0, 0, 0.45);
+  font-size: 1.2rem;
 }
 
 code {
@@ -45,12 +47,17 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 ul {
   list-style: none;
   padding-left: 0;
 }
 
-button {
+button,
+input[type="button"] {
   outline: none;
   border: none;
 }

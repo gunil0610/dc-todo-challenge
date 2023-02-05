@@ -30,7 +30,7 @@ const AddTodo: React.FC<Props> = ({ onAdd }) => {
         value={text}
         className={styles.inputText}
       />
-      <input type="submit" value={"Add"} className={styles.inputButton} />
+      <button className={styles.inputButton}>Add</button>
     </form>
   );
 };

@@ -1,23 +1,26 @@
-/* Input */
-
 .inputForm {
-  padding: 8px 16px;
-  box-sizing: border-box;
-  background: #404258;
   width: 100%;
   display: flex;
+  padding: 1.4rem 1rem;
+  background: var(--color-bg-dark);
 }
 .inputText {
-  border: 0;
-  flex: 1;
-  height: 30px;
-  border-radius: 4px 0px 0px 4px;
-  padding-left: 16px;
+  flex: 1 0 auto;
+  font-size: 1.4rem;
+  padding: 0.7rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 8px 0px 0px 8px;
 }
 .inputButton {
-  background-color: orange;
-  color: #fff;
-  border: 0;
-  border-radius: 0px 4px 4px 0px;
-  width: 80px;
+  cursor: pointer;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0 2rem;
+  border-radius: 0px 8px 8px 0px;
+}
+.inputButton:hover {
+  filter: brightness(125%);
 }
