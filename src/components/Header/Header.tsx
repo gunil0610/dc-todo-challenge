@@ -1,6 +1,7 @@
 import React from "react";
-import { BsSunFill } from "react-icons/bs";
+import { BsSunFill, BsFillMoonFill } from "react-icons/bs";
 import { filters, Filter } from "../../App";
+import { useDarkMode } from "../../context/DarkModeContext";
 
 import styles from "./Header.module.css";
 
@@ -10,10 +11,15 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ filter, onFilterChange }) => {
+  const { darkMode, toggleDarkMode } = useDarkMode();
   return (
     <header className={styles.header}>
       {/* Icon */}
-      <BsSunFill className={styles.themeIcon} />
+      {darkMode ? (
+        <BsFillMoonFill onClick={toggleDarkMode} className={styles.themeIcon} />
+      ) : (
+        <BsSunFill onClick={toggleDarkMode} className={styles.themeIcon} />
+      )}
       {/* Filter */}
       <ul className={styles.filters}>
         {filters.map((f, i) => (
