@@ -19,39 +19,37 @@ interface Props {
 const Todos: React.FC<Props> = ({ filter }) => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
 
-  const [filteredTodos, setFilteredTodos] = useState<TodoItem[]>([]);
-
-  useEffect(() => {
-    if (filter === "all") setFilteredTodos(todos);
-    else if (filter === "active")
-      setFilteredTodos(todos.filter((t) => t.status === "active"));
-    else setFilteredTodos(todos.filter((t) => t.status === "completed"));
-  }, [todos, filter]);
-
   const handleAdd = (newTodo: TodoItem) => setTodos([...todos, newTodo]);
   const handleUpdate = (updatedTodo: TodoItem) =>
     setTodos(todos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t)));
   const handleDelete = (deletedTodo: TodoItem) =>
     setTodos(todos.filter((t) => t.id !== deletedTodo.id));
 
+  const getFilteredItems = (todos: TodoItem[], filter: Filter): TodoItem[] => {
+    if (filter === "all") return todos;
+    else if (filter === "active")
+      return todos.filter((t) => t.status === "active");
+    else return todos.filter((t) => t.status === "completed");
+  };
+
+  const filtered = getFilteredItems(todos, filter);
+
   return (
-    <>
+    <section className={styles.todoContainer}>
       {/* List */}
-      <div className={styles.todoContainer}>
-        <ul className={styles.todoLists}>
-          {filteredTodos.map((todo) => (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              onUpdate={handleUpdate}
-              onDelete={handleDelete}
-            />
-          ))}
-        </ul>
-      </div>
+      <ul className={styles.todoLists}>
+        {filtered.map((todo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
+        ))}
+      </ul>
       {/* Input */}
       <AddTodo onAdd={handleAdd} />
-    </>
+    </section>
   );
 };
 

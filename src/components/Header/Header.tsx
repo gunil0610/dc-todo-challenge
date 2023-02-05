@@ -11,13 +11,13 @@ interface Props {
 
 const Header: React.FC<Props> = ({ filter, onFilterChange }) => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       {/* Icon */}
       <BsSunFill className={styles.themeIcon} />
       {/* Filter */}
       <ul className={styles.filter}>
-        {filters.map((f) => (
-          <li>
+        {filters.map((f, i) => (
+          <li key={i}>
             <button
               onClick={() => onFilterChange(f)}
               className={`${styles.filterItem} ${
@@ -29,7 +29,7 @@ const Header: React.FC<Props> = ({ filter, onFilterChange }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </header>
   );
 };
 
