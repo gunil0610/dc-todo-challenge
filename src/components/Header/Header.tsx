@@ -15,11 +15,13 @@ const Header: React.FC<Props> = ({ filter, onFilterChange }) => {
   return (
     <header className={styles.header}>
       {/* Icon */}
-      {darkMode ? (
-        <BsFillMoonFill onClick={toggleDarkMode} className={styles.themeIcon} />
-      ) : (
-        <BsSunFill onClick={toggleDarkMode} className={styles.themeIcon} />
-      )}
+      <button onClick={toggleDarkMode}>
+        {darkMode ? (
+          <BsFillMoonFill className={styles.themeIcon} />
+        ) : (
+          <BsSunFill className={styles.themeIcon} />
+        )}
+      </button>
       {/* Filter */}
       <ul className={styles.filters}>
         {filters.map((f, i) => (
