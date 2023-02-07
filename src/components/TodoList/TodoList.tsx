@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Filter } from "../../App";
 
 import AddTodo from "../AddTodo/AddTodo";
@@ -16,12 +16,26 @@ interface Props {
   filter: Filter;
 }
 
-const Todos: React.FC<Props> = ({ filter }) => {
+const TodoList: React.FC<Props> = ({ filter }) => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
 
-  const handleAdd = (newTodo: TodoItem) => setTodos([...todos, newTodo]);
-  const handleUpdate = (updatedTodo: TodoItem) =>
+  useEffect(() => {
+    setTodos(JSON.parse(localStorage.todos));
+  }, []);
+
+  const setToLocalStorage = (todos: TodoItem[]) =>
+    (localStorage.todos = JSON.stringify(todos));
+
+  const handleAdd = (newTodo: TodoItem) => {
+    setTodos([...todos, newTodo]);
+    setToLocalStorage([...todos, newTodo]);
+  };
+  const handleUpdate = (updatedTodo: TodoItem) => {
     setTodos(todos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t)));
+    setToLocalStorage(
+      todos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t))
+    );
+  };
   const handleDelete = (deletedTodo: TodoItem) =>
     setTodos(todos.filter((t) => t.id !== deletedTodo.id));
 
@@ -53,4 +67,4 @@ const Todos: React.FC<Props> = ({ filter }) => {
   );
 };
 
-export default Todos;
+export default TodoList;
