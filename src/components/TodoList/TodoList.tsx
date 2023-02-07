@@ -17,9 +17,7 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = ({ filter }) => {
-  const [todos, setTodos] = useState<TodoItem[]>(
-    JSON.parse(localStorage.todos)
-  );
+  const [todos, setTodos] = useState<TodoItem[]>(readTodosFromLocalStorage);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -62,3 +60,8 @@ const TodoList: React.FC<Props> = ({ filter }) => {
 };
 
 export default TodoList;
+
+function readTodosFromLocalStorage(): TodoItem[] {
+  const todos = localStorage.getItem("todos");
+  return todos ? JSON.parse(todos) : [];
+}
