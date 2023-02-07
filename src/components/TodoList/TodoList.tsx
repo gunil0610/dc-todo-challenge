@@ -17,25 +17,19 @@ interface Props {
 }
 
 const TodoList: React.FC<Props> = ({ filter }) => {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [todos, setTodos] = useState<TodoItem[]>(
+    JSON.parse(localStorage.todos)
+  );
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.todos));
-  }, []);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
-  const setToLocalStorage = (todos: TodoItem[]) =>
-    (localStorage.todos = JSON.stringify(todos));
+  const handleAdd = (newTodo: TodoItem) => setTodos([...todos, newTodo]);
 
-  const handleAdd = (newTodo: TodoItem) => {
-    setTodos([...todos, newTodo]);
-    setToLocalStorage([...todos, newTodo]);
-  };
-  const handleUpdate = (updatedTodo: TodoItem) => {
+  const handleUpdate = (updatedTodo: TodoItem) =>
     setTodos(todos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t)));
-    setToLocalStorage(
-      todos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t))
-    );
-  };
+
   const handleDelete = (deletedTodo: TodoItem) =>
     setTodos(todos.filter((t) => t.id !== deletedTodo.id));
 
