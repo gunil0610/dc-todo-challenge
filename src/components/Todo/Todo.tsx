@@ -19,12 +19,12 @@ const Todo: React.FC<Props> = ({ todo, onUpdate, onDelete }) => {
       <input
         className={styles.checkbox}
         type="checkbox"
-        id="checkbox"
+        id={todo.id}
         checked={todo.status === "completed"}
         onChange={handleChange}
       />
       <label
-        htmlFor="checkbox"
+        htmlFor={todo.id}
         className={`${styles.text} ${
           todo.status === "completed" && styles.completed
         }`}
